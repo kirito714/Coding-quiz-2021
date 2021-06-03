@@ -8,25 +8,25 @@
   </head>
 
   <body>
-    <div id="container">
+    <div class="container">
       <div id="home" class="flex-column flex-center">
         <h1>Let's Go!</h1>
         <a class="btn" id="startBtn">Play!</a>
         <a id="HighScores-btn" class="btn">HighScores</a>
       </div>
 
-      <div id="quiz" id="container" class="hidden flex-column flex-center">
+      <div id="quiz"  class="container hidden flex-column flex-center">
         <h2>Here Is the Quiz!</h2>
         <div id="quiz-rules">rules here</div>
         <a class="btn" id="startquizbtn">Start Quiz!</a>
       </div>
     </div>
 
-    <div id="container2">
+    <div class="container">
       <div id="qtime" class="hidden">
         <div id="hud" id="quizin">
           <div class class="hud-items">
-            <p id="progresstext" class="hudprefix">Question</p>
+            <p id="progressText" class="hudprefix">Question</p>
             <div id="progressBar">
               <div id="progressBarFull"></div>
             </div>
@@ -39,16 +39,29 @@
         <h1 class="time"></h1>
         <h1 id="question">What is the answer to this question?</h1>
         <div id="answer-box">
-        <p class="answer-prefix">A</p>
-        <p class="answer-text" data-number="1">choice 1!</p>
-        <p class="answer-prefix">B</p>
-        <p class="answer-text" data-number="2">choice 2!</p>
-        <p class="answer-prefix">C</p>
-        <p class="answer-text" data-number="3">choice 3!</p>
-        <p class="answer-prefix">D</p>
-        <p class="answer-text" data-number="4">choice 4!</p>
+          <p class="answer-prefix">A</p>
+          <p class="answer-text" data-number="0">choice 1!</p>
+          <p class="answer-prefix">B</p>
+          <p class="answer-text" data-number="1">choice 2!</p>
+          <p class="answer-prefix">C</p>
+          <p class="answer-text" data-number="2">choice 3!</p>
+          <p class="answer-prefix">D</p>
+          <p class="answer-text" data-number="3">choice 4!</p>
+        </div>
       </div>
-      <script src="./script.js"></script>
     </div>
+    <!-- I must make another highscore screen that dose not have a inpute intials when clicked on the highscoreBTN only end of screen.-->
+    <div id="highScoreScreen"class="container hidden">
+      <h1>Highscores!</h1>
+     <p><span id="intials">Intials</span> - <span id="score">score</span></p>
+     <form action="/action_page.php">
+      <label for="intials">Intials</label><br>
+    <input type="text" id="initalsInput" name="Intials" value=><br>
+      
+     
+      <input type="submit" value="Submit">
+    </form> 
+    </div>
+    <script src="./script.js"></script>
   </body>
 </html>
