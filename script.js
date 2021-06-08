@@ -8,16 +8,21 @@ const time = document.querySelector(".time");
 const scoreText = document.querySelector("#progressBarFull");
 const progressText = document.querySelector("#progressText");
 const answerText = Array.from(document.querySelectorAll(".answer-text"));
-var secondsLeft = 80;
+const secondsLeft = 80;
 const highScoreScreen = document.querySelector("#highScoreScreen");
 const highScoreBtn = document.querySelector("#HighScores-btn");
+const leaderData = JSON.parse(localStorage.getItem("userInfo")) || [];
 
+const subBtn = document.querySelector("#submitBtn");
+const UserForm = document.querySelector("#initform");
+const homeScrn = document.querySelector("#homeScreen");
 
 // CAPs note in JS shows that its going to be fixed.
 const SCORE_POINTS = 100;
 const MAX_QUEStIONS = 4;
-let intials = document.querySelector("#intials");
-let highScore = document.querySelector("#score");
+const initials = document.querySelector("#initialsInput");
+console.log(initials);
+// let highScore = document.querySelector("#score");
 let score = 0;
 let acceptingAnswers = true;
 let availableQuestions = [];
@@ -60,7 +65,20 @@ getNewQuestion = () => {
   if (availableQuestions.length === 0 || questionCounter > MAX_QUEStIONS) {
     //saves recent score to local storage
     localStorage.setItem("mostRecentScore", score);
-    return;
+    for (let i = leaderData.length - 3; i < leaderData.length; i++) {
+      if (i < 0) {
+        i = 0;
+      }
+      var li = document.createElement("li");
+
+      let currentInitials = leaderData[i].inits;
+      let currentScore = leaderData[i].score;
+      let text = `${currentInitials} : ${currentScore}`;
+      li.innerText = text;
+      document.getElementById("top3").appendChild(li);
+    }
+
+    return displayHighScoreScreen();
   }
   // makes question counter go up by 1
   questionCounter++;
@@ -88,12 +106,11 @@ answerText.forEach((choice) => {
 
     acceptingAnswers = false;
     const selectedChoice = e.target;
-    console.log(selectedChoice);
+
     const selectedAnswer = selectedChoice.dataset["number"];
 
     let classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-    console.log(classToApply, currentQuestion);
 
     if (classToApply === "correct") {
       incrementScore(SCORE_POINTS);
@@ -124,11 +141,45 @@ startquizbtn.addEventListener("click", function (e) {
 
   startGame();
 });
+homeScrn.addEventListener("click", function (e) {
+  home.classList.add("hidden");
+  quiz.classList.remove("hidden");
+  highScoreScreen.classList.add("hidden");
+});
+
 highScoreBtn.addEventListener("click", function (e) {
   displayHighScoreScreen();
-  localStorage.getItem("mostRecentScore", score);
-  highScore.innerText = [];
+
+  for (let i = leaderData.length - 3; i < leaderData.length; i++) {
+    if (i < 0) {
+      i = 0;
+    }
+    var li = document.createElement("li");
+
+    let currentInitials = leaderData[i].inits;
+    let currentScore = leaderData[i].score;
+    let text = `${currentInitials} : ${currentScore}`;
+    li.innerText = text;
+    document.getElementById("top3").appendChild(li);
+    UserForm.classList.add("hidden");
+  }
+
 });
+subBtn.addEventListener("click", function (e) {
+  displayHighScoreScreen();
+
+  const userInits = initials.value;
+  const lastUser = {
+    inits: userInits,
+    score: score,
+  };
+
+  leaderData.push(lastUser);
+
+  localStorage.setItem("userInfo", JSON.stringify(leaderData));
+});
+
+// make function for rendering leaderboard in HTML
 
 function displayHighScoreScreen() {
   quiz.classList.add("hidden");

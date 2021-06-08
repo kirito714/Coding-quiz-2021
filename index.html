@@ -15,9 +15,16 @@
         <a id="HighScores-btn" class="btn">HighScores</a>
       </div>
 
-      <div id="quiz"  class="container hidden flex-column flex-center">
+      <div id="quiz" class="container hidden flex-column flex-center">
         <h2>Here Is the Quiz!</h2>
-        <div id="quiz-rules">rules here</div>
+        <ul id="quiz-rules">
+          <li class="container">~Rules!~</li>
+          <li class="container">* 100 Points for correct!</li>
+          <li class="container">* No points for incorrect</li>
+          <li class="container">* minus 20 seconds for each incorrect!</li>
+          <li class="container">~Good Luck!~</li>
+        </ul>
+
         <a class="btn" id="startquizbtn">Start Quiz!</a>
       </div>
     </div>
@@ -31,10 +38,7 @@
               <div id="progressBarFull"></div>
             </div>
           </div>
-          <div class="hud-item">
-            <p class="hud-prefix">Score</p>
-            <h1 class="hud-main-text" id="score">0</h1>
-          </div>
+          <div class="hud-item"></div>
         </div>
         <h1 class="time"></h1>
         <h1 id="question">What is the answer to this question?</h1>
@@ -50,17 +54,18 @@
         </div>
       </div>
     </div>
-    <!-- I must make another highscore screen that dose not have a inpute intials when clicked on the highscoreBTN only end of screen.-->
-    <div id="highScoreScreen"class="container hidden">
+
+    <div id="highScoreScreen" class="container hidden">
       <h1>Highscores!</h1>
-     <p><span id="intials">Intials</span> - <span id="score">score</span></p>
-     <form action="/action_page.php">
-      <label for="intials">Intials</label><br>
-    <input type="text" id="initalsInput" name="Intials" value=><br>
-      
-     
-      <input type="submit" value="Submit">
-    </form> 
+
+      <ul id="top3"></ul>
+      <a class="btn" id="homeScreen"><span>Quiz</span><span>Rules!</span></a>
+      <form id="initform">
+        <label for="initials">Enter Your Initials!</label><br />
+        <input type="text" id="initialsInput" name="initials" /><br />
+
+        <button class="btn" id="submitBtn" type="submit">Submit</button>
+      </form>
     </div>
     <script src="./script.js"></script>
   </body>
