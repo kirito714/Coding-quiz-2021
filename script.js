@@ -8,7 +8,6 @@ const time = document.querySelector(".time");
 const scoreText = document.querySelector("#progressBarFull");
 const progressText = document.querySelector("#progressText");
 const answerText = Array.from(document.querySelectorAll(".answer-text"));
-const secondsLeft = 80;
 const highScoreScreen = document.querySelector("#highScoreScreen");
 const highScoreBtn = document.querySelector("#HighScores-btn");
 const leaderData = JSON.parse(localStorage.getItem("userInfo")) || [];
@@ -21,8 +20,9 @@ const homeScrn = document.querySelector("#homeScreen");
 const SCORE_POINTS = 100;
 const MAX_QUEStIONS = 4;
 const initials = document.querySelector("#initialsInput");
-console.log(initials);
+
 // let highScore = document.querySelector("#score");
+let secondsLeft = 80; //not sure why that was a const but i fixed it. was working before sry.
 let score = 0;
 let acceptingAnswers = true;
 let availableQuestions = [];
