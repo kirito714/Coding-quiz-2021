@@ -78,7 +78,7 @@ getNewQuestion = () => {
       document.getElementById("top3").appendChild(li);
     }
 
-    return displayHighScoreScreen();
+    return endDisplayHighScoreScreen();
   }
   // makes question counter go up by 1
   questionCounter++;
@@ -163,10 +163,9 @@ highScoreBtn.addEventListener("click", function (e) {
     document.getElementById("top3").appendChild(li);
     UserForm.classList.add("hidden");
   }
-
 });
 subBtn.addEventListener("click", function (e) {
-  displayHighScoreScreen();
+ displayHighScoreScreen();
 
   const userInits = initials.value;
   const lastUser = {
@@ -187,6 +186,14 @@ function displayHighScoreScreen() {
   qtime.classList.add("hidden");
   highScoreScreen.classList.remove("hidden");
 }
+function endDisplayHighScoreScreen() {
+  quiz.classList.add("hidden");
+  home.classList.add("hidden");
+  homeScrn.classList.add("hidden");
+  qtime.classList.add("hidden");
+  UserForm.classList.remove("hidden");
+  highScoreScreen.classList.remove("hidden");
+}
 
 function setTime() {
   var timerInterval = setInterval(function () {
@@ -196,7 +203,7 @@ function setTime() {
     if (secondsLeft <= 0) {
       secondsLeft = 0;
       clearInterval(timerInterval);
-      displayHighScoreScreen();
+      endDisplayHighScoreScreen();
     }
   }, 1000);
 }
